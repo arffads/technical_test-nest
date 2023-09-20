@@ -16,11 +16,12 @@ import { Poli } from '@entities/poli.entity';
       inject: [ConfigService],
       useFactory: async () => ({
         type: 'postgres',
-        host: process.env.DB_HOST,
-        port: parseInt(process.env.DB_PORT),
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
+        host: process.env.PGHOST || process.env.DB_HOST,
+        port: parseInt(process.env.PGPORT || process.env.DB_PORT),
+        username: process.env.PGUSER || process.env.DB_USERNAME,
+        password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
+        database: process.env.PGDATABASE || process.env.DB_DATABASE,
+        url: process.env.DATABASE_URL,
         entities: [
           Dokter,
           Tindakan,
